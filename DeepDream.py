@@ -1,6 +1,6 @@
 import bpy
 import torch
-from PIL import Image as diocane
+from PIL import Image
 import numpy as np
 from . modelDeepDream import DeepDreamNN
 
@@ -25,24 +25,18 @@ class DeepDream(bpy.types.ShaderNodeCustomGroup):
             print("Input socket {} is linked".format(self.inputs[0].name))
             #The input node is given by going to the inputs then links and then get the socket
             tex_node = self.inputs[0].links[0].from_socket.node
-            print(tex_node.type)
             img = tex_node.image
-            print(img.channels)
-            
+            img_path = img.filepath_from_user()
             #Generate new img? 
             #bpy.data.images.new(name=img.name + "_deep_dream", width=100, height=100)
-            pixels = list(img.pixels)
-            print(pixels.shape)
             
-            #array = []
-            #for i in range(0, len(pixels)):
-            #    pixels[i] = 1.0 - pixels[i] # invert red channel
-            #    array.append(pixels[i])
-            #print(array)
-            #img = diocane.fromarray(np.asarray(array),'RGB')
-            #img.pixels[:] = pixels
-            #img.update()
-            #print('ok')
+            NN = DeepDreamNN(img_path)
+            result_img = NN.dreamed_image
+            # Image.fromarray(np.array(pixels[:]))
+            # img = diocane.fromarray(np.asarray(array),'RGB')
+            # img.pixels[:] = pixels
+            # img.update()
+            # print('ok')
             
         
     def copy(self, node):
