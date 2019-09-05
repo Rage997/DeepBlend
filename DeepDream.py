@@ -5,7 +5,7 @@ import numpy as np
 from . modelDeepDream import DeepDreamNN
 
 # for blender2.80 we should derive the class from bpy.types.ShaderNodeCustomGroup
-class DeepDream(bpy.types.ShaderNodeCustomGroup):
+class DeepDream(bpy.types.CompositorNodeCustomGroup):
 
     bl_name='Deep Dream Neural Network'
     bl_label='DeepDream'
@@ -21,6 +21,7 @@ class DeepDream(bpy.types.ShaderNodeCustomGroup):
         self.node_tree.links.new(self.node_tree.nodes['Group Input'].outputs[0],self.node_tree.nodes['Group Output'].inputs[0])
     
     def update(self):
+        
         if self.inputs[0]:
             print("Input socket {} is linked".format(self.inputs[0].name))
             #The input node is given by going to the inputs then links and then get the socket
@@ -32,6 +33,8 @@ class DeepDream(bpy.types.ShaderNodeCustomGroup):
             
             NN = DeepDreamNN(img_path)
             result_img = NN.dreamed_image
+            # TODO how to load the resulting image into blender? SHould go pixel to pixel
+            
             # Image.fromarray(np.array(pixels[:]))
             # img = diocane.fromarray(np.asarray(array),'RGB')
             # img.pixels[:] = pixels

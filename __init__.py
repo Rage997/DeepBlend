@@ -33,7 +33,7 @@ from . test_panel import TEST_PT_PANEL
 from . DeepDream import *
 from . StyleTransfer import *
 from nodeitems_utils import NodeItem, register_node_categories, unregister_node_categories
-from nodeitems_builtins import ShaderNodeCategory
+from nodeitems_builtins import CompositorNodeCategory
 
 classes = (TEST_OT_OPERATOR, TEST_PT_PANEL)
 
@@ -43,7 +43,7 @@ register, unregister = bpy.utils.register_classes_factory(classes)
 
 def register():
     bpy.utils.register_class(DeepDream)
-    newcatlist = [ShaderNodeCategory("SH_NEW_CUSTOM", "Custom Nodes", items=[NodeItem("DeepDream"),]),]
+    newcatlist = [CompositorNodeCategory("SH_NEW_CUSTOM", "Custom Nodes", items=[NodeItem("DeepDream"),]),]
     register_node_categories("CUSTOM_NODES", newcatlist)
 
 def unregister():
