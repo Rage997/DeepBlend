@@ -4,7 +4,7 @@ from PIL import Image as diocane
 import numpy as np
 
 # for blender2.80 we should derive the class from bpy.types.ShaderNodeCustomGroup
-class StyleTransfer(bpy.types.ShaderNodeCustomGroup):
+class StyleTransfer(bpy.types.CompositorNodeCustomGroup):
 
     bl_name='Style Transfer Neural Network'
     bl_label='StyleTransfer'
@@ -34,16 +34,6 @@ class StyleTransfer(bpy.types.ShaderNodeCustomGroup):
             #bpy.data.images.new(name=img.name + "_deep_dream", width=100, height=100)
             pixels = list(img.pixels)
             print(pixels.shape)
-            
-            #array = []
-            #for i in range(0, len(pixels)):
-            #    pixels[i] = 1.0 - pixels[i] # invert red channel
-            #    array.append(pixels[i])
-            #print(array)
-            #img = diocane.fromarray(np.asarray(array),'RGB')
-            #img.pixels[:] = pixels
-            #img.update()
-            #print('ok')
         
     def copy(self, node):
         self.node_tree=node.node_tree.copy()
@@ -51,4 +41,3 @@ class StyleTransfer(bpy.types.ShaderNodeCustomGroup):
     def free(self):
         bpy.data.node_groups.remove(self.node_tree, do_unlink=True)
     
-    # def 
