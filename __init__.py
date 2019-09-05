@@ -28,10 +28,8 @@ bl_info = {
 }
 
 import bpy
-from . test_op import TEST_OT_OPERATOR
-from . test_panel import TEST_PT_PANEL
 from . DeepDream import *
-from . StyleTransfer import *
+# from . StyleTransfer import *
 from nodeitems_utils import NodeItem, register_node_categories, unregister_node_categories
 from nodeitems_builtins import CompositorNodeCategory
 
