@@ -28,14 +28,15 @@ bl_info = {
 }
 
 import bpy
+
 from . DeepDream import *
 # from . StyleTransfer import *
 from nodeitems_utils import NodeItem, register_node_categories, unregister_node_categories
 from nodeitems_builtins import CompositorNodeCategory
 
-classes = (TEST_OT_OPERATOR, TEST_PT_PANEL)
+# classes = (TEST_OT_OPERATOR, TEST_PT_PANEL)
 
-register, unregister = bpy.utils.register_classes_factory(classes)
+# register, unregister = bpy.utils.register_classes_factory(classes)
 
 # Only DeepDream is being registered right now
 
